@@ -1,10 +1,10 @@
-const productSchema = require('../models/Product')
+const Product = require('../models/Product')
 
 const addProduct = async (req, res) => {
     try {
-        const newProduct = new productSchema({
-            ...req.body
-        })
+        const newProduct = new Product({
+          ...req.body,
+        });
 
         await newProduct.save();
         res.send(newProduct)
@@ -17,7 +17,7 @@ const addProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
     try {
-        const allProduct = await productSchema.find({});
+        const allProduct = await Product.find({});
         res.send(allProduct)
     } catch (error) {
         res.status(400).send({
